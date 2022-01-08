@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'rest_framework',
+    'user',
 ]
 
 MIDDLEWARE = [
@@ -74,9 +77,15 @@ WSGI_APPLICATION = 'ChartReview.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+     'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'chart',        #数据库名字
+        'USER': 'root',          #账号
+        'PASSWORD': '123456',      #密码
+        'HOST': '127.0.0.1',    #IP
+        'PORT': '3306',                   #端口
+        #因为后面第三方登录时，要求引擎为INNODB
+        "OPTIONS":{"init_command":"SET default_storage_engine=INNODB;"}
     }
 }
 
@@ -118,3 +127,18 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+from datetime import timedelta
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=10),
+}
+
+REST_FRAMEWORK = {
+
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+
+}
