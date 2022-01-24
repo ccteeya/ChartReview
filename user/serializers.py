@@ -1,6 +1,11 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
 
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+# class UserDetailDetailSerializer(serializers.ModelSerializer):
+
+
+
 class UserRegisterSerializer(serializers.ModelSerializer):
     url = serializers.HyperlinkedIdentityField(view_name='user-detail', lookup_field='username')
 
@@ -25,3 +30,21 @@ class UserRegisterSerializer(serializers.ModelSerializer):
             password = validated_data.pop('password')
             instance.set_password(password)
         return super().update(instance, validated_data)
+
+
+class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
+
+    '''
+    token
+    '''
+    def validate(self, attrs):
+        data = super().validate(attrs)
+
+        refresh = self.get_token(self.user)
+
+        data['refresh'] = str(refresh)
+        data['access'] = str(refresh.access_token)
+        data['username'] = self.user.username
+        data['user_id'] = self.user.id
+
+        return data

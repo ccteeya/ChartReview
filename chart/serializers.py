@@ -33,7 +33,7 @@ class TableSerializer(serializers.HyperlinkedModelSerializer):
 
     def validate_chart_id(self, value):
         if not Chart.objects.filter(id=value).exists() and value is not None:
-            raise serializers.ValidationError("Category with id {} not exists.".format(value))
+            raise serializers.ValidationError("Table with id {} not exists.".format(value))
         return value
 
     class Meta:

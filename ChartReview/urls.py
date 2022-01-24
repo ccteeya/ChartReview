@@ -21,20 +21,22 @@ from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
-from user.views import UserViewSet
-from chart.views import ArticleViewSet, ChartViewSet
+from user.views import UserViewSet, MyTokenObtainPairView
+from chart.views import TableViewSet, ChartViewSet
+from task.views import TaskViewSet
 
 router = DefaultRouter()
 router.register(r'user', UserViewSet)
-router.register(r'table', ArticleViewSet)
+router.register(r'table', TableViewSet)
 router.register(r'chart', ChartViewSet)
+router.register(r'task', TaskViewSet)
 
 urlpatterns = [
 
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
 
-    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/', MyTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
     # path('api-auth/', include('rest_framework.urls')),
