@@ -24,12 +24,15 @@ from rest_framework_simplejwt.views import (
 from user.views import UserViewSet, MyTokenObtainPairView
 from chart.views import TableViewSet, ChartViewSet
 from task.views import TaskViewSet
+from questionnaire.views import QuestionnaireViewSet, ChoiceViewSet
 
 router = DefaultRouter()
 router.register(r'user', UserViewSet)
 router.register(r'table', TableViewSet)
 router.register(r'chart', ChartViewSet)
 router.register(r'task', TaskViewSet)
+router.register(r'questionnaire', QuestionnaireViewSet)
+router.register(r'choice', ChoiceViewSet)
 
 urlpatterns = [
 
@@ -44,3 +47,10 @@ urlpatterns = [
 
 
 ]
+admin.site.site_header = "Chart Admin"
+admin.site.site_title = "Admin Portal"
+admin.site.index_title = ""
+
+from django.contrib.auth.models import User, Group
+# admin.site.unregister(User)
+admin.site.unregister(Group)
