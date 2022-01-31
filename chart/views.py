@@ -1,5 +1,5 @@
-from chart.models import Chart, Table
-from chart.serializers import TableSerializer, ChartSerializer, ChartDetailSerializer
+from chart.models import Chart, Table, Keyword
+from chart.serializers import TableSerializer, ChartSerializer, ChartDetailSerializer, KeywordSerializer
 from rest_framework import generics
 from rest_framework import viewsets
 
@@ -11,6 +11,10 @@ class TableViewSet(viewsets.ModelViewSet):
 class ChartViewSet(viewsets.ModelViewSet):
     queryset = Chart.objects.all()
     serializer_class = ChartDetailSerializer
+
+class KeywordViewSet(viewsets.ModelViewSet):
+    queryset = Keyword.objects.all()
+    serializer_class = KeywordSerializer
 
     # def get_serializer_class(self):
     #     if self.action=='list':

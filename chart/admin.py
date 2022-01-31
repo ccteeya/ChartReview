@@ -1,5 +1,5 @@
 from django.contrib import admin
-from chart.models import Chart, Table
+from chart.models import Chart, Table,Keyword
 # Register your models here.
 from task.models import Task
 
@@ -33,6 +33,6 @@ class ChartAdmin(admin.ModelAdmin):
 
 
 
-
+admin.site.register(Keyword)
 admin.site.register(Chart, ChartAdmin)
 admin.site.register(Table, TableAdmin)

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from chart.models import Chart, Table
+from chart.models import Chart, Table, Keyword
 
 # class TableDetailSerializer(serializers.ModelSerializer):
 # #     class Meta:
@@ -62,3 +62,10 @@ class ChartDetailSerializer(serializers.ModelSerializer):
             'created',
             'tables',
         ]
+
+
+class KeywordSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Keyword
+        fields = '__all__'

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from task.models import Task
+from task.models import Task, Note
 from chart.serializers import ChartDetailSerializer
 from user.serializers import UserRegisterSerializer
 
@@ -18,3 +18,10 @@ class TaskSerializer(serializers.ModelSerializer):
             'chart',
             'created',
         ]
+
+
+class NoteSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Note
+        fields = '__all__'

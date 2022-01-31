@@ -42,5 +42,5 @@ class Choice(models.Model):
         return self.choice_text
 
 
-class Answer(models.Model):
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, related_name='user')
+# class Answer(models.Model):
+#     user = models.ForeignKey(User, on_delete=models.SET_NULL, related_name='user')

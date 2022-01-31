@@ -26,3 +26,21 @@ class Task(models.Model):
     created = models.DateTimeField(default=timezone.now)
     # 更新时间
     updated = models.DateTimeField(auto_now=True)
+
+
+class Note(models.Model):
+
+    content = models.TextField()
+
+    task = models.ForeignKey(
+        Task,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='notes'
+    )
+
+    # 创建时间
+    created = models.DateTimeField(default=timezone.now)
+    # 更新时间
+    updated = models.DateTimeField(auto_now=True)

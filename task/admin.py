@@ -1,5 +1,5 @@
 from django.contrib import admin
-from task.models import Task
+from task.models import Task, Note
 from chart.models import Chart
 # Register your models here.
 
@@ -16,3 +16,4 @@ from chart.models import Chart
 
 
 admin.site.register(Task)
+admin.site.register(Note)

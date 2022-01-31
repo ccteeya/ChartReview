@@ -22,8 +22,8 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 from user.views import UserViewSet, MyTokenObtainPairView
-from chart.views import TableViewSet, ChartViewSet
-from task.views import TaskViewSet
+from chart.views import TableViewSet, ChartViewSet, KeywordViewSet
+from task.views import TaskViewSet, NoteViewSet
 from questionnaire.views import QuestionnaireViewSet, ChoiceViewSet
 
 router = DefaultRouter()
@@ -33,6 +33,8 @@ router.register(r'chart', ChartViewSet)
 router.register(r'task', TaskViewSet)
 router.register(r'questionnaire', QuestionnaireViewSet)
 router.register(r'choice', ChoiceViewSet)
+router.register(r'keyword', KeywordViewSet)
+router.register(r'note', NoteViewSet)
 
 urlpatterns = [
 
