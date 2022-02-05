@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from questionnaire.models import Questionnaire, Question, Choice
+from questionnaire.models import Questionnaire, Question, Choice, Answer
 
 
 class ChoiceSerializer(serializers.ModelSerializer):
@@ -40,3 +40,8 @@ class QuestionnaireSerializer(serializers.ModelSerializer):
             'title',
             'questions'
         ]
+
+class AnswerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Answer
+        fields = '__all__'

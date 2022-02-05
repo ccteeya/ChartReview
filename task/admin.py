@@ -4,16 +4,11 @@ from chart.models import Chart
 # Register your models here.
 
 
-# class ChartInLine(admin.TabularInline):
-#     model = Chart
-#     extra = 0
-#
-# class TaskAdmin(admin.ModelAdmin):
-#     search_fields = ['id']
-#
-#     inlines = [ChartInLine]
+class TaskAdmin(admin.ModelAdmin):
+    # search_fields = ['done']
+    list_filter=('chart', 'user', 'done')
+    list_display = ('chart', 'user', 'done')
 
 
-
-admin.site.register(Task)
+admin.site.register(Task, TaskAdmin)
 admin.site.register(Note)

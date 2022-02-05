@@ -10,8 +10,9 @@ class TaskViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         queryset = self.queryset
         user_id = self.request.query_params.get('userId', None)
+        done = self.request.query_params.get('done', None)
         if user_id is not None:
-            queryset = queryset.filter(user__id=user_id)
+            queryset = queryset.filter(user__id=user_id, done=False if int(done) == 0 else True)
         return queryset
 
 
@@ -25,3 +26,5 @@ class NoteViewSet(viewsets.ModelViewSet):
         if task_id is not None:
             queryset = queryset.filter(task__id=task_id)
         return queryset
+
+

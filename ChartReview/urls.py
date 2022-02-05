@@ -24,7 +24,7 @@ from rest_framework_simplejwt.views import (
 from user.views import UserViewSet, MyTokenObtainPairView
 from chart.views import TableViewSet, ChartViewSet, KeywordViewSet
 from task.views import TaskViewSet, NoteViewSet
-from questionnaire.views import QuestionnaireViewSet, ChoiceViewSet
+from questionnaire.views import QuestionnaireViewSet, ChoiceViewSet, AnswerViewSet
 
 router = DefaultRouter()
 router.register(r'user', UserViewSet)
@@ -35,6 +35,7 @@ router.register(r'questionnaire', QuestionnaireViewSet)
 router.register(r'choice', ChoiceViewSet)
 router.register(r'keyword', KeywordViewSet)
 router.register(r'note', NoteViewSet)
+router.register(r'answer', AnswerViewSet)
 
 urlpatterns = [
 

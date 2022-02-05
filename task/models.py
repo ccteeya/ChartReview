@@ -22,6 +22,11 @@ class Task(models.Model):
         related_name='tasks'
     )
 
+    done = models.BooleanField(
+        default=False
+    )
+
+
     # 创建时间
     created = models.DateTimeField(default=timezone.now)
     # 更新时间

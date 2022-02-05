@@ -42,5 +42,8 @@ class Choice(models.Model):
         return self.choice_text
 
 
-# class Answer(models.Model):
-#     user = models.ForeignKey(User, on_delete=models.SET_NULL, related_name='user')
+class Answer(models.Model):
+
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='answer')
+    question = models.ForeignKey(Question, on_delete=models.SET_NULL, null=True, blank=True, related_name='answer')
+    answer = models.CharField(max_length=200)

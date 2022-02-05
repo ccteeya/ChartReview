@@ -16,6 +16,7 @@ class TaskSerializer(serializers.ModelSerializer):
             'id',
             'user',
             'chart',
+            'done',
             'created',
         ]
 

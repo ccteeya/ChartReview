@@ -10,7 +10,7 @@ class TaskInLine(admin.TabularInline):
 
 class TableInLine(admin.TabularInline):
     model = Table
-    fields = ('title', 'created',)
+    fields = ('title','content', 'created',)
     extra = 0
 
 
@@ -30,9 +30,10 @@ class ChartAdmin(admin.ModelAdmin):
 
 
 
+class KeywordAdmin(admin.ModelAdmin):
+    search_fields = ['keyword']
 
 
-
-admin.site.register(Keyword)
+admin.site.register(Keyword, KeywordAdmin)
 admin.site.register(Chart, ChartAdmin)
 admin.site.register(Table, TableAdmin)
