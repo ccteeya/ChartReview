@@ -1,12 +1,11 @@
-from chart.models import Chart, Table, Keyword
-from chart.serializers import TableSerializer, ChartSerializer, ChartDetailSerializer, KeywordSerializer
+from chart.models import Chart, Table, Keyword, UsersKeywordGroup,UsersKeyword
+from chart.serializers import TableSerializer, ChartSerializer, ChartDetailSerializer, KeywordSerializer, UsersKeywordGroupSerializer, UserKeywordSerializer
 from rest_framework import generics
 from rest_framework import viewsets
 
 class TableViewSet(viewsets.ModelViewSet):
     queryset = Table.objects.all()
     serializer_class = TableSerializer
-
 
 class ChartViewSet(viewsets.ModelViewSet):
     queryset = Chart.objects.all()
@@ -16,13 +15,21 @@ class KeywordViewSet(viewsets.ModelViewSet):
     queryset = Keyword.objects.all()
     serializer_class = KeywordSerializer
 
-    # def get_serializer_class(self):
-    #     if self.action=='list':
-    #         return ChartSerializer
-    #     else:
-    #         return ChartDetailSerializer
-#
-# class ChartList(generics.ListCreateAPIView):
-#     queryset = Chart.objects.all()
-#     serializer_class = ChartListSerializer
+class UsersKeywordGroupViewSet(viewsets.ModelViewSet):
+    queryset = UsersKeywordGroup.objects.all()
+    serializer_class = UsersKeywordGroupSerializer
+
+    def get_queryset(self):
+        queryset = self.queryset
+        user_id = self.request.query_params.get('userId', None)
+        if user_id is not None:
+            queryset = queryset.filter(user = user_id)
+        return queryset
+
+
+
+class UserKeywordViewSet(viewsets.ModelViewSet):
+    queryset = UsersKeyword.objects.all()
+    serializer_class = UserKeywordSerializer
+
 

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from chart.models import Chart, Table, Keyword
+from chart.models import Chart, Table, Keyword, UsersKeyword, UsersKeywordGroup
 
 # class TableDetailSerializer(serializers.ModelSerializer):
 # #     class Meta:
@@ -69,3 +69,28 @@ class KeywordSerializer(serializers.ModelSerializer):
     class Meta:
         model = Keyword
         fields = '__all__'
+
+
+class UserKeywordSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UsersKeyword
+        fields = '__all__'
+
+
+# class UserKeywordDetailSerializer(serializers.ModelSerializer):
+#     url = serializers.HyperlinkedIdentityField(view_name='userkeyword-detail')
+#     class Meta:
+#         model = UsersKeyword
+#         fields = '__all__'
+
+class UsersKeywordGroupSerializer(serializers.ModelSerializer):
+    keywords = UserKeywordSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = UsersKeywordGroup
+        fields = [
+            'id',
+            'name',
+            'user',
+            'keywords',
+        ]

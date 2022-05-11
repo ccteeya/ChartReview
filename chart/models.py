@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils import timezone
-
+from django.contrib.auth.models import User
 
 
 
@@ -41,6 +41,35 @@ class Table(models.Model):
 
 class Keyword(models.Model):
     keyword = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.keyword
+
+class UsersKeywordGroup(models.Model):
+    user = models.ForeignKey(
+        User,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='user_keyword_group'
+    )
+
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
+
+
+class UsersKeyword(models.Model):
+    group = models.ForeignKey(
+        UsersKeywordGroup,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='keywords'
+    )
+
+    keyword = models.CharField(max_length=50)
 
     def __str__(self):
         return self.keyword
