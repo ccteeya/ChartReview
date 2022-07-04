@@ -5,19 +5,19 @@ from task.models import Task
 
 class TaskInLine(admin.TabularInline):
     model = Task
-
     extra = 0
 
 class TableInLine(admin.TabularInline):
     model = Table
     fields = ('title','content', 'created',)
+    # fields = ('title', 'created',)
     extra = 0
 
 
 class TableAdmin(admin.ModelAdmin):
     search_fields = ['title']
     list_display = ( 'title',  'updated')
-    exclude = ('content',)
+    # exclude = ('content',)
 
     def has_add_permission(self, request):
         return False
@@ -34,9 +34,12 @@ class KeywordAdmin(admin.ModelAdmin):
     search_fields = ['keyword']
 
 
+class UsersKeywordGroupAdmin(admin.ModelAdmin):
+    list_display = ('name', 'user')
+
 admin.site.register(Keyword, KeywordAdmin)
 admin.site.register(Chart, ChartAdmin)
 admin.site.register(Table, TableAdmin)
 
-admin.site.register(UsersKeywordGroup)
+admin.site.register(UsersKeywordGroup, UsersKeywordGroupAdmin)
 admin.site.register(UsersKeyword)
